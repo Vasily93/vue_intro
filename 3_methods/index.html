@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Methods</title>
+</head>
+<body>
+    <div id="app">
+        {{ count }}
+    </div>
+    <button id="inc">increase</button>
+    <button id="dec">decrease</button>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods: {
+                inc: function() {
+                    this.count += 1
+                },
+                dec: function() {
+                    this.count -= 1
+                }
+            }
+        })
+        const inc = document.getElementById('inc')
+        inc.addEventListener('click', app.inc)
+
+        const dec = document.getElementById('dec')
+        dec.addEventListener('click', app.dec)
+    </script>
+</body>
+</html>
