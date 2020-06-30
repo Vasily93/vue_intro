@@ -7,17 +7,21 @@
 </head>
 <body>
     <div id="app">
-        <h2>{{ product }} are in stock yes</h2>
+        <h2>{{ state.count }} are in stock</h2>
     </div>
 
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
+        const state = { count: 0}
         const app = new Vue({
             el: '#app',
             data: {
-                product = 'Boots'
+                state: state
             }
         })
+        function plus() {
+           return state.count +=1
+        }
     </script>
 </body>
 </html>
