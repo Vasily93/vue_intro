@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Data-binding</title>
 </head>
 <body>
-    
+    <div id="app">
+        <input type="text" v-model="message ">
+        <h2 v-text="message"></h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vasily!'
+            }
+        })
+    </script>
 </body>
 </html>
