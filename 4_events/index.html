@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Events</title>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{ color }}</p>
+        <button @click='changeColor'>Chage color</button>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+            const colors = ['green', 'red', 'blue']
+        new Vue({
+            el: '#app',
+            data: {
+                color : ''
+            },
+            methods: {
+                changeColor() {
+                    const selection = Math.floor(Math.random() * colors.length)
+                    this.color = colors[selection]
+                }
+            }
+        })
+    </script>
+</body>
+</html>
