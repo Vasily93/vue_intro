@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher</title>
+</head>
+<body>
+
+    <div id="app">
+        <textarea placeholder="text" v-model='plaintext'></textarea>
+        <p v-text='ciphertext'></p>
+        <button @click='goUp'>Up</button>
+        <span>Shift: {{ shift }}</span>
+        <button @click='goDown'>Down</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue ({
+            el: '#app',
+            data: {
+                plaintext: '',
+                shift: 0
+            },
+            methods: {
+                goUp() {
+                    // if(this.shift<26) {
+                    //     this.shift += 1;
+                    // }
+                    this.shift = this.shift >= 25 ?
+                                    (this.shift + 1) %26
+                                    : this.shift +1
+                },
+                goDown() {
+                    // if(this.shift>0){
+                    // this.shift -= 1;
+                    // }
+                    this.shift = this.shift == 0 ?
+                                    this.shift
+                                    : this.shift -1
+                }
+            },
+            computed: {
+                ciphertext() {
+                    const charset = 'abcdefghijklmnopqrstuvwxyz'
+                    const encode = (char) => {
+                        const currentPosition = charset.indexOf(char)
+                        if(currentPosition<0) {
+                            return char
+                        }
+                        const newPosition = (currentPosition + this.shift) % charset.length
+                        return charset[newPosition]
+                        }
+                    return this.plaintext
+                                .toLowerCase()
+                                .split('')
+                                .map(encode)
+                                .join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
