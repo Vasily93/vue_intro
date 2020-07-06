@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Rendering</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <h1 v-show='shouldShow'>Hello</h1>
+        <button @click='shouldShow = !shouldShow'>Toggle</button> -->
+
+        <h1 v-if="language == 'eng'">Hello {{ name }}</h1>
+        <h1 v-else-if="language == 'fr'">Boujuor {{ name }}</h1>
+        <h1 v-else-if="language == 'rus'">Privet {{ name }}</h1>
+        <h1 v-else> {{ name }}</h1>
+        
+        <button @click='language = "eng"'>English</button>
+        <button @click='language = "fr"'>French</button>
+        <button @click='language = "rus"'>Russian</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue ({
+            el: '#app',
+            data: {
+                language: 'eng',
+                name: 'Vasily'
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+</html>
+
+<!-- v-show: still renders but hides element with css -->
+<!-- v-if: does not render element if condition is false -->
