@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling Data Collections</title>
+</head>
+<body>
+
+    <div id="app">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Role</th>
+            </tr>
+            <tr v-for='user in users'>
+                <td v-for='prop in user'>{{prop}}</td>
+            </tr>
+        </table>
+
+        <div v-for='row in grid'>
+            <span v-for='col in row'>{{ col }}</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue ({
+            el: '#app',
+            data: {
+                users: [
+                    {id: 1, name: 'Vasily', role: 'admin'},
+                    {id: 2, name: 'Gleb', role: 'brother'},
+                    {id: 3, name: 'Trifon', role: 'brother'},
+                    {id: 4, name: 'Tichon', role: 'brother'},
+                ],
+                grid: [
+                    [1, 2, 3],
+                    [4, 5, 6],
+                    [7, 8, 9]
+                ] 
+            },
+            methods: {
+               
+            },
+            computed: {
+              
+            }
+        })
+    </script>
+</body>
+</html>
