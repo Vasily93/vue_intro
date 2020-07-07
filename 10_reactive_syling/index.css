@@ -1,0 +1,15 @@
+body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#app {
+    background-color: cadetblue;
+    margin: 30px;
+    padding: 5px;
+}
+
+.big {
+    font-size: 40px;
+}
