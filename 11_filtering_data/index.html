@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtering Data</title>
+</head>
+<body>
+    <div id="app">
+        <table style="border: solid; width: 100%;">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Bio URL</th>
+            </tr>
+            <tr v-for='user in users'>
+                <td>{{user.id | number}}</td>
+                <td>{{user.name | capitalLetter}}</td>
+                <td>{{user.email | gmail}}</td>
+                <td>{{user.bio}}</td>
+                <!-- can add more filters in line with horizonal line in between -->
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue ({
+            el: '#app',
+            data: {
+                users: [
+                    {id:1 , name:'vasily' , email:'vasaily' , bio:'qwerqwe' },
+                    {id:2 , name:'tichon' , email:'tichon' , bio:'qewrqwer' },
+                    {id:3 , name:'trifon' , email:'trifon' , bio:'adsfasdf' },
+                    {id:4 , name:'elena' , email:'elena' , bio:'afgadfg' },
+                    {id:5 , name:'polina' , email:'polina' , bio:'adfgafdg' },
+                    {id:6 , name:'gleb' , email:'gleb' , bio:'sfgsdfg' }
+                ]
+            },
+            filters: {
+                number(value) {
+                    if(!value) return '';
+                    return `#${value}`; 
+                },
+
+                capitalLetter(name) {
+                    // const arr = name.split('');
+                    // const first = arr[0].toUpperCase();
+                    // arr[0] = first;    
+                    // return arr.join('')
+                    return name.charAt(0).toUpperCase() + name.slice(1);
+                },
+                gmail(value) {
+                    return `${value}@gmail.com`
+                }
+            }
+        })
+    </script>
+</body>
+</html>
