@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Component</title>
+</head>
+<body>
+    <div id="app">
+        <color-cycle></color-cycle>
+        <color-cycle></color-cycle>
+        <color-cycle></color-cycle>
+        <color-cycle></color-cycle>
+        <color-cycle></color-cycle>
+        <color-cycle></color-cycle>
+        <color-cycle></color-cycle>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const ColorCycle = {
+            template: `<button @click='cycle'
+                                :style='style'>{{color}}</button>`,
+        
+            data() {
+                return {
+                colors: ['red', 'green', 'blue'],
+                index: 0
+                }
+            },
+            methods: {
+                cycle() {
+                    this.index += 1;
+                    if(this.index>=this.colors.length) {
+                        this.index = 0
+                    }
+                }
+            },
+            computed: {
+                style() {
+                    return {
+                        'background-color': this.color
+                    }
+                },
+                color() {
+                    return this.colors[this.index]
+                }
+            }
+        
+        }
+
+        const app = new Vue ({
+            el: '#app',
+            components: {
+                 ColorCycle
+            },
+        })
+    </script>
+</body>
+</html>
