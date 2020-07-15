@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component with Props</title>
+</head>
+<body>
+    <div id="app">
+        <counter :start='start' :increment='increment'></counter>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const Counter = {
+            template: `<button @click='plusTwo'>{{count}}</button>`,    
+            props: {
+                start: {type: Number} ,
+                increment: {type: Number}
+            },
+            data() {
+                return {
+                    clicks: 0
+                }
+            },
+            methods: {
+                plusTwo() {
+                    this.clicks += 1
+                }
+            },
+            computed: {
+                count() {
+                    return this.start + this.increment * this.clicks
+                }
+            }
+        }
+
+        const app = new Vue ({
+            el: '#app',
+            components: {
+                 Counter
+            },
+            data: {
+                start: 0,
+                increment: 2
+            }
+        })
+    </script>
+</body>
+</html>
