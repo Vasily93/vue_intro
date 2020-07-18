@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuscom Eventents </title>
+</head>
+<body>
+    <div id="app">
+        <number-input @error='logger' @no-error='clearErrors'></number-input>
+        <div v-show='errors'>
+            <p v-for='message in errors'>{{ message}}</p>
+        </div>
+    </div>
+
+    <script type="text/x-template" id="number-input">
+        <input type="text" @input="checker">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const NumberInput = {
+            template: `#number-input`,
+            methods: {
+                isNumberic(value) {
+                    return !isNaN(parseFloat(value)) && isFinite(value)
+                },
+                checker(e) {
+                    const number = e.target.value;
+                    if(!this.isNumberic(number)) {
+                        e.target.value = '';
+                        this.$emit('error', {msg: 'Not a Number'})
+                    } else {
+                        this.$emit('no-error')
+                    }
+                }
+            }
+        }
+        
+        const app = new Vue ({
+            el: '#app',
+            components: {
+                 NumberInput
+            },
+            data: {
+                hello: 'hello',
+                errors: []
+                
+            },
+            methods: {
+                logger(data) {
+                    // const { msg } = data;
+                    const msg = data.msg;
+                    this.errors = []
+                    this.errors.push(msg) 
+                },
+                clearErrors() {
+                    this.errors = []
+                }
+            }
+        })
+    </script>
+</body>
+</html>
