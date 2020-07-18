@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>componets with content </title>
+</head>
+<body>
+    <div id="app">
+      <card>
+          <h1 slot="header">This is Header</h1>
+          <card-header slot="header" title="This is the title"></card-header>
+          <h1 slot="main">This is Main</h1>
+          <h1 slot="footer">This is Footer</h1>
+      </card>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <!-- card component -->
+    <script type="text/x-template" id="card">
+        <section style="text-align: center; color: white">
+            <header style="margin-bottom:100px; background-color: green;">
+                <slot name="header"></slot>
+            </header>
+            <main style="margin-bottom:100px; background-color: red">
+                <slot name="main"></slot>
+            </main>
+            <footer style=" background-color: blue">
+                <slot name="footer"></slot>
+            </footer>
+        </section>
+    </script>
+
+    <!-- Vue instanses -->
+    <script>
+        const CardHeader = {
+            template: `<span>{{title}}</span>`,
+            props:['title'] 
+        }
+        const Card = {
+            template: '#card',
+            props: ['footer', 'header'],
+            data() {
+                return {};
+            },
+            methods: {
+
+            }
+        }
+
+            const app = new Vue ({
+            el: '#app',
+            components: {
+                Card,
+                CardHeader
+            },
+            data: {
+                hello: 'hello'
+            },
+            methods: {
+             
+            }
+        })
+    </script>
+</body>
+</html>
