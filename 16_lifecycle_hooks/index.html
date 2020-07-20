@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components LifeCycle Hooks</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="task" placeholder="add new todo"/>
+        <button @click="addTodo">Add Todo</button>
+        <hr>
+        <ul>
+            <li v-for="todo in todos">
+                <div>
+                    <span>{{todo.task}} </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue ({
+            el: '#app',
+            data: {
+                task: '',
+                todos: []
+            },
+            beforeCreate() {
+                console.log('before created', this)
+            },
+            created() {
+                console.log('created', this)
+            },
+            methods: {
+                addTodo() {
+                    this.todos.push({task:this.task})
+                    this.task = ''
+                }
+            },
+            
+        })
+    </script>
+</body>
+</html>
