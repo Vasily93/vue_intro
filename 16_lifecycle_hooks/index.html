@@ -9,12 +9,11 @@
     <div id="app">
         <input type="text" v-model="task" placeholder="add new todo"/>
         <button @click="addTodo">Add Todo</button>
+        <button @click="deleteTodo">Delete All Todos</button>
         <hr>
         <ul>
-            <li v-for="todo in todos">
-                <div>
-                    <span>{{todo.task}} </span>
-                </div>
+            <li v-for="todo in todos" :id="todo.index">
+                <span>{{todo.task}} </span>
             </li>
         </ul>
     </div>
@@ -27,16 +26,24 @@
                 task: '',
                 todos: []
             },
-            beforeCreate() {
-                console.log('before created', this)
-            },
             created() {
-                console.log('created', this)
+                this.storage = window.localStorage;
+                this.todos = JSON.parse(this.storage.getItem('todos')) || [];
+            },
+            updated() {
+                this.storage.setItem('todos', JSON.stringify(this.todos))
+            },
+            beforeDestroy() {
+                this.storage.setItem('todos', JSON.stringify(this.todos))
             },
             methods: {
                 addTodo() {
-                    this.todos.push({task:this.task})
+                    const index = this.todos.length
+                    this.todos.push({index: index, task:this.task})
                     this.task = ''
+                },
+                deleteTodo() {
+                    this.todos = []
                 }
             },
             
