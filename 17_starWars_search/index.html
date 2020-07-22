@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Wars Search!!</title>
+</head>
+<body>
+
+    <div id="app">
+        <search-bar></search-bar>
+    </div>
+    <script type="text/x-tempalte" id="search-bar">
+        <input type="text" class="form-control" id="search-bar"
+            @input="updateSearch"/>
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
