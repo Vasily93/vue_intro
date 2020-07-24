@@ -8,7 +8,10 @@
 <body>
 
     <div id="app">
-        <search-bar></search-bar>
+        <search-bar @search="updateList"></search-bar>
+        <ul v-for="character in people">
+            <li><a href=character.url>{{character.name}}</a></li>
+        </ul>
     </div>
     <script type="text/x-tempalte" id="search-bar">
         <input type="text" class="form-control" id="search-bar"
@@ -17,6 +20,8 @@
         
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

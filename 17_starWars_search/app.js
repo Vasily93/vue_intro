@@ -1,51 +1,54 @@
 const swapi = (function(axios) {
-    const baseApi = 'https://swapi.dev/api/';
+    const baseUrl = 'https://swapi.dev/api/';
 
     const searchPeople = (person) => {
         const url = `${baseUrl}people/?search=${person}&format=json`;
         return axios.get(url)
-                    .then(responce => console.log(responce));
+                    .then(response => response.data.results);
     };
     const getPersonDeatail = (url) => {
         return axios.get(url)
-                    .then(responce => console.log(responce));
+                    .then(response => response.data);
     };
 
     return {
         searchPeople,
         getPersonDeatail
     }
-})(axios='axios');
+})(axios);
+
+Vue.prototype.swapi = swapi; //enables access to sawpi everywhere
 
 // compomnents are here
 const SearchBar = {
     template: '#search-bar',
     data() {
         return {
-            charavter: ''
+            character: ''
         }
     },
     methods: {
-        updateSearch() {
-            console.log('update search')
-        }
+        updateSearch: _.debounce(function() {
+            this.swapi.searchPeople(this.character)
+                      .then(response => this.$emit('search', response))
+        }, 300)
     }
 }
 
-
-
-
-
-
-
-// vue instanve below
+// vue instanse below
 
 const app = new Vue({
     el: '#app',
     data: {
-        message: 'lets start!'
+        people: []
     },
     components: {
         SearchBar
+    },
+    methods: {
+        updateList(data) {
+            this.people = data;
+            console.log(this.people, 'updated')
+        }
     }
 })
