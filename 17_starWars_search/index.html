@@ -8,6 +8,7 @@
 <body>
 
     <div id="app">
+        <h1 v-if="selectedPerson">Hi Vasya!!</h1>
         <search-bar @search="updateList"></search-bar>
         <person-list :people="people"></person-list>
     </div>

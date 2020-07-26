@@ -41,7 +41,7 @@ const Person = {
     methods: {
         getDetails() {
              this.swapi.getPersonDeatail(this.url)
-                        .then(response => console.log(response)) 
+                        .then(details => Event.$emit('selectPerson', details)) 
         }
     }
 }
@@ -54,19 +54,31 @@ const PersonList = {
     }
 }
 // vue instanse below
+const Event = new Vue({
+
+})
 
 const app = new Vue({
     el: '#app',
     data: {
-        people: []
+        people: [],
+        selectedPerson: ''
     },
     components: {
         SearchBar,
         PersonList
     },
+    created() {
+        this.swapi.searchPeople('d')
+                .then(response => this.people = response)
+        Event.$on('selectPerson', data => this.updateSelectedPerson(data))
+    },
     methods: {
         updateList(data) {
             this.people = data;
+        },
+        updateSelectedPerson(data) {
+            this.selectedPerson = data;
         }
     }
 })
