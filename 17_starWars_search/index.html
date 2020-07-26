@@ -9,16 +9,33 @@
 
     <div id="app">
         <search-bar @search="updateList"></search-bar>
-        <ul v-for="character in people">
-            <li><a href=character.url>{{character.name}}</a></li>
-        </ul>
+        <person-list :people="people"></person-list>
     </div>
+
+    <!-- Components below -->
     <script type="text/x-tempalte" id="search-bar">
         <input type="text" class="form-control" id="search-bar"
             @input="updateSearch"
             placeholder="Search" style="width: 98%"/>
-        
     </script>
+    <script type="text/x-template" id="person">
+        <li>
+            {{name}}
+            <slot></slot>
+            <button @click="getDetails">Details</button>
+        </li>
+    </script>
+    <script type="text/x-template" id="person-list">
+        <ul>
+            <person v-for="p in people"
+                    :name="p.name"
+                    :url="p.url"
+                    :key="p.url"
+            ></person>
+        </ul>
+    </script>
+
+    <!--  -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>

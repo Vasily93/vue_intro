@@ -35,6 +35,24 @@ const SearchBar = {
     }
 }
 
+const Person = {
+    template: '#person',
+    props: ['name', 'url'],
+    methods: {
+        getDetails() {
+             this.swapi.getPersonDeatail(this.url)
+                        .then(response => console.log(response)) 
+        }
+    }
+}
+
+const PersonList = {
+    template: '#person-list',
+    props: ['people'],
+    components: {
+        Person
+    }
+}
 // vue instanse below
 
 const app = new Vue({
@@ -43,12 +61,12 @@ const app = new Vue({
         people: []
     },
     components: {
-        SearchBar
+        SearchBar,
+        PersonList
     },
     methods: {
         updateList(data) {
             this.people = data;
-            console.log(this.people, 'updated')
         }
     }
 })
