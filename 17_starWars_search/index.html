@@ -8,17 +8,21 @@
 <body>
 
     <div id="app">
-        <h1 v-if="selectedPerson">Hi Vasya!!</h1>
         <search-bar @search="updateList"></search-bar>
+        <person-details :person="selectedPerson" v-if="selectedPerson"></person-details>
         <person-list :people="people"></person-list>
     </div>
 
     <!-- Components below -->
+
+    <!-- searchbar -->
     <script type="text/x-tempalte" id="search-bar">
         <input type="text" class="form-control" id="search-bar"
             @input="updateSearch"
             placeholder="Search" style="width: 98%"/>
     </script>
+
+    <!-- person -->
     <script type="text/x-template" id="person">
         <li>
             {{name}}
@@ -26,6 +30,8 @@
             <button @click="getDetails">Details</button>
         </li>
     </script>
+
+    <!-- person list -->
     <script type="text/x-template" id="person-list">
         <ul>
             <person v-for="p in people"
@@ -34,6 +40,17 @@
                     :key="p.url"
             ></person>
         </ul>
+    </script>
+
+    <!-- person details -->
+    <script type="text/x-template" id="person-details">
+        <div>
+            <h3>{{person.name}}</h3>
+            <p>Eye Color: {{person.eye_color}}</p>
+            <p>Hair Color: {{person.hair_color}}</p>
+            <p>Height: {{person.height}}</p>
+            <button @click="hideDetails">X</button>
+        </div>
     </script>
 
     <!--  -->

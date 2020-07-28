@@ -53,10 +53,19 @@ const PersonList = {
         Person
     }
 }
-// vue instanse below
-const Event = new Vue({
 
-})
+const PersonDetails = {
+    template: '#person-details',
+    props: ['person'],
+    methods: {
+        hideDetails() {
+            Event.$emit('selectPerson')
+        }
+    }
+}
+
+// vue instanse below
+const Event = new Vue();
 
 const app = new Vue({
     el: '#app',
@@ -66,7 +75,8 @@ const app = new Vue({
     },
     components: {
         SearchBar,
-        PersonList
+        PersonList,
+        PersonDetails
     },
     created() {
         this.swapi.searchPeople('d')
