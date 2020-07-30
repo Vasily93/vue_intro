@@ -13,50 +13,17 @@
         <person-list :people="people"></person-list>
     </div>
 
-    <!-- Components below -->
-
-    <!-- searchbar -->
-    <script type="text/x-tempalte" id="search-bar">
-        <input type="text" class="form-control" id="search-bar"
-            @input="updateSearch"
-            placeholder="Search" style="width: 98%"/>
-    </script>
-
-    <!-- person -->
-    <script type="text/x-template" id="person">
-        <li>
-            {{name}}
-            <slot></slot>
-            <button @click="getDetails">Details</button>
-        </li>
-    </script>
-
-    <!-- person list -->
-    <script type="text/x-template" id="person-list">
-        <ul>
-            <person v-for="p in people"
-                    :name="p.name"
-                    :url="p.url"
-                    :key="p.url"
-            ></person>
-        </ul>
-    </script>
-
-    <!-- person details -->
-    <script type="text/x-template" id="person-details">
-        <div>
-            <h3>{{person.name}}</h3>
-            <p>Eye Color: {{person.eye_color}}</p>
-            <p>Hair Color: {{person.hair_color}}</p>
-            <p>Height: {{person.height}}</p>
-            <button @click="hideDetails">X</button>
-        </div>
-    </script>
-
-    <!--  -->
+    <!-- JS below -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+
+
+    <script src="swapi_search.js"></script>
+    <script src="person.js"></script>
+    <script src="person_list.js"></script>
+    <script src="person_details.js"></script>
+    <script src="search_bar.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
