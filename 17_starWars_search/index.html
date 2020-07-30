@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start Wars Search!!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
 
     <div id="app">
         <search-bar @search="updateList"></search-bar>
-        <person-details :person="selectedPerson" v-if="selectedPerson"></person-details>
+        <person-details :person="selectedPerson"></person-details>
         <person-list :people="people"></person-list>
     </div>
 
@@ -17,13 +18,14 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="swapi_search.js"></script>
     <script src="person.js"></script>
     <script src="person_list.js"></script>
     <script src="person_details.js"></script>
     <script src="search_bar.js"></script>
+    <script src="modal_details.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

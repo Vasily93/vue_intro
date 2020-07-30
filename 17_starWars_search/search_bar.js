@@ -2,7 +2,7 @@ const SearchBar = {
     template: `<input type="text" class="form-control" id="search-bar"
                 @input="updateSearch"
                 v-model="character"
-                placeholder="Search" style="width: 98%"/>`,
+                placeholder="Search Character by Name" style="width: 98%"/>`,
     data() {
         return {
             character: ''
