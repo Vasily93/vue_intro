@@ -16,7 +16,7 @@ const app = new Vue({
         PersonDetails
     },
     created() {
-        this.swapi.searchPeople('t')
+        this.swapi.searchPeople('vader')
                 .then(response => this.people = response)
         Event.$on('selectPerson', data => this.updateSelectedPerson(data))
     },

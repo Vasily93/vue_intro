@@ -5,6 +5,9 @@ const PersonDetails = {
                 <h3>{{person.name}}</h3>
                 <p>Eye Color: {{person.eye_color}}</p>
                 <p>Hair Color: {{person.hair_color}}</p>
+                <p>Gender: {{person.gender}}</p>
+                <p>Mass: {{person.mass}}</p>
+                <p>Skin Color: {{person.skin_color}}</p>
                 <p>Height: {{person.height}}</p>
                 <a class="modal-close">Close</a>
             </div>
